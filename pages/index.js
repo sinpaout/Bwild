@@ -1,12 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-
 import { getPosts } from '../api/posts';
 
-
 export default class IndexPage extends Component {
-
   /**
    * renderPosts
    * 記事一覧取得

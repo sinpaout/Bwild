@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-
 import { getPost } from '../api/posts';
 
 export default class PostPage extends Component {
-
   render() {
     const { post } = this.props;
     return (
