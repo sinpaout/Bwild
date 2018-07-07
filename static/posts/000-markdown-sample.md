@@ -1,6 +1,14 @@
-import fs from 'fs'
+---
+title: サンプル１
+date: 20180707
+---
 
-export async function getPosts (dirname) {
+Markdown
+
+### コード
+
+```js
+export async function getArticles (dirname) {
   return new Promise((resolve, reject) => {
     fs.readdir(dirname, (error, files) => {
       if (error) {
@@ -15,3 +23,4 @@ export async function getPosts (dirname) {
     })
   })
 }
+```

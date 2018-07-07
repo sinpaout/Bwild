@@ -1,7 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
-import { getPosts } from '../api/posts';
+import React, { Component, Fragment } from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import fs from 'fs'
+import frontMatter from 'front-matter'
+import { getPosts } from '../api/posts'
 
 export default class IndexPage extends Component {
   /**
@@ -9,29 +11,26 @@ export default class IndexPage extends Component {
    * 記事一覧取得
    */
   renderPosts() {
-    if (this.props.posts) {
-      const li = this.props.posts.map(post => {
-        return (
-          <li key={post.id}>
-            <Link as={`/p/${post.id}`} href={`/post?id=${post.id}`}>
-                <a>
-                  <h3>{post.title}</h3>
-                  <p>{post.body}</p>
-                </a>
-            </Link>
-          </li>
-        )
-      })
+    const li = this.props.linkParams.map((el, i) => {
       return (
-        <ul>
-          {li}
-        </ul>
+        <li key={el.name} className='post-list'>
+          <Link href={'/post?name='+el.name} as={'/post/'+el.name}>
+            <a>
+              <p className='post-title'>{el.title}</p>
+              <p className='post-date'>{el.date}</p>
+            </a>
+          </Link>
+        </li>
       )
-    }
-    return null;
+    })
+    return (
+      <ul className='posts'>
+        {li}
+      </ul>
+    )
   }
 
-  render() {
+  render () {
     const posts = this.renderPosts();
     return (
       <Fragment>
@@ -53,8 +52,21 @@ export default class IndexPage extends Component {
   }
 }
 
-IndexPage.getInitialProps = async ({ req }) => {
-  const res = await getPosts()
-  const json = await res.json()
-  return { posts: json }
+IndexPage.getInitialProps = async () => {
+  return getPosts('./static/posts/')
+    .then((posts) => {
+      
+      const linkParams = posts.nameList.map((postName, i) => {
+        const content = fs.readFileSync(posts.pathList[i], 'utf-8')
+        const meta = frontMatter(content)
+        return {
+          name: postName,
+          title: meta.attributes.title,
+          date: meta.attributes.date,
+        }
+      })
+      return {
+        linkParams
+      }
+    })
 }

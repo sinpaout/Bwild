@@ -1,15 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
-import { getPost } from '../api/posts';
+import Head from 'next/head'
+import Link from 'next/link'
+import React, { Component, Fragment } from 'react'
+import fs from 'fs'
+import frontMatter from 'front-matter'
+const md = require('markdown-it')({ html: true })
+  .use(require('markdown-it-highlightjs'))
 
 export default class PostPage extends Component {
-  render() {
-    const { post } = this.props;
+  render () {
+
     return (
       <Fragment>
         <Head>
-          <title>This is the default title</title>
+          <title>{this.props.title}</title>
+          {/* <link rel="stylesheet" type="text/css" href="/static/css/paraiso-light.css" media="screen" /> */}
+          {/* <link rel="stylesheet" type="text/css" href="/static/css/katex.min.css" media="screen" /> */}
         </Head>
         <header>
           <nav>
@@ -18,12 +23,7 @@ export default class PostPage extends Component {
           </nav>
         </header>
         <main>
-          <h1>
-            {post.title}
-          </h1>
-          <p>
-            {post.body}
-          </p>
+          <div dangerouslySetInnerHTML={{__html: md.render(this.props.bodytxt)}} />
         </main>
         <footer>
           footer
@@ -33,8 +33,22 @@ export default class PostPage extends Component {
   }
 }
 
-PostPage.getInitialProps = async ({ query }) => {
-  const res = await getPost(query.id)
-  const json = await res.json()
-  return { post: json[0] }
+PostPage.getInitialProps = async ({ query: { fname } }) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(fname, 'utf-8', (error, content) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(content)
+      }
+    })
+  }).then((content) => {
+    const meta = frontMatter(content)
+    // const body = md.render(meta.body)
+
+    return {
+      title: meta.attributes.title,
+      bodytxt: meta.body
+    }
+  })
 }
