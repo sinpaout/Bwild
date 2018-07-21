@@ -1,0 +1,17 @@
+{
+  "name": "Bwild",
+  "version": "1.0.0",
+  "description": "A wild blog system build with next.js and Dropbox",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build"
+  },
+  "author": "bonzin",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
