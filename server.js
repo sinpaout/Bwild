@@ -11,9 +11,8 @@ app.prepare()
 
   server.get('/p/:id', (req, res) => {
     const actualPage = '/post'
-    const queryParams = { title: req.params.title }
+    const queryParams = { path: req.params.path }
 
-    
     app.render(req, res, actualPage, queryParams)
   })
 
