@@ -1,0 +1,25 @@
+{
+  "name": "Bwild",
+  "version": "1.0.0",
+  "description": "A wild blog system build with next.js and Dropbox",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "export": "next export",
+    "build:content": "processmd content/**/*.md --outputDir json --preview 110 --summaryOutput json/summary.json"
+  },
+  "author": "bonzin",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "json-loader": "^0.5.7",
+    "next": "^6.1.1",
+    "processmd": "^4.2.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "standard": "^11.0.1",
+    "webpack": "^4.16.2",
+    "yaml-frontmatter-loader": "^0.1.0"
+  }
+}
