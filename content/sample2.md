@@ -1,8 +1,7 @@
 ---
-title: 人と比べて生きてはいけない
+title: 第二話 日本一周の旅
 date: 20180722
-category: 所感
-author: Tatsuhiko Seki
+category: 自転車
 ---
 
 人と比べて生きては幸せになれない。

@@ -1,27 +1,28 @@
-const express = require('express')
-const next = require('next');
+const { parse } = require('url')
+const match = require('micro-route/match')
+const next = require('next')
 
 const dev = process.env.NODE_NEV != 'production'
+
 const app = next({ dev });
 const handle = app.getRequestHandler()
 
-app.prepare()
-.then(() => {
-  const server = express()
+const isPost = req => match(req, '/post')
 
-  server.get('/p/:id', (req, res) => {
-    const actualPage = '/post'
-    const queryParams = { path: req.params.path }
+async function main (req, res) {
+  const parsedUrl = parse(req.url, true)
+  const { query } = parsedUrl
 
-    app.render(req, res, actualPage, queryParams)
-  })
+  if (isPost(req)) {
+    return app.render(req, res, '/post', query)
+  }
 
-  server.get('*', (req, res) => {
-    handle(req, res)
-  })
+  return handle(req, res, parsedUrl)
+}
 
-  server.listen(3000, (err) => {
-    if (err) throw err
-    console.log('> Ready on http://localhost:3000')
-  })
-})
+async function setup(handler) {
+  await app.prepare()
+  return handler
+}
+
+module.exports = setup(main)

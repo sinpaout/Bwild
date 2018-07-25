@@ -1,9 +1,7 @@
 ---
-title: 人と同じはイコール無価値だ
+title: 第四話 世界一周の旅
 date: 20180724
-category: 所感
-author: Tatsuhiko Seki
+category: 自転車
 ---
-
 
 人と同じはイコール無価値だ
