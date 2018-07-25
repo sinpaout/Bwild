@@ -1,6 +1,7 @@
+const withSass = require('@zeit/next-sass')
 const SUMMARY_JSON = require('./json/summary.json')
 
-module.exports = {
+module.exports = Object.assign({}, withSass(), {
   exportPathMap: function () {
     let pathMap = {}
     SUMMARY_JSON.fileMap && Object.keys(SUMMARY_JSON.fileMap).forEach((path) => {
@@ -14,4 +15,4 @@ module.exports = {
       ...pathMap
     }
   }
-}
+})

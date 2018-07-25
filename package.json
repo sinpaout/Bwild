@@ -14,9 +14,11 @@
   "author": "bonzin",
   "license": "MIT",
   "dependencies": {
+    "@zeit/next-sass": "^0.2.0",
     "micro": "^9.3.2",
     "micro-route": "^2.5.0",
     "next": "^6.1.1",
+    "node-sass": "^4.9.2",
     "processmd": "^4.2.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
