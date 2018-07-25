@@ -4,7 +4,7 @@
   "description": "A wild blog system build with next.js and Dropbox",
   "main": "server.js",
   "scripts": {
-    "dev": "micro-dev --watch server.js",
+    "dev": "next",
     "build": "next build",
     "export": "next export",
     "deploy": "next build && next export",

@@ -33,12 +33,10 @@ export default class IndexPage extends Component {
   }
 }
 IndexPage.getInitialProps = () => {
-  const json = Object.keys(SUMMARY_JSON.fileMap).map((path) => {
-    const { title, date, preview, dir, base, sourceBase } = SUMMARY_JSON.fileMap[path];
-     return { title, date, preview, dir, base, sourceBase }
-   })
-
+  const posts = Object.keys(SUMMARY_JSON.fileMap).map((path) => {
+    return SUMMARY_JSON.fileMap[path]
+  })  
   return {
-    posts: json
+    posts
   }
 }

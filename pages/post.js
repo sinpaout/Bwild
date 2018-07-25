@@ -9,15 +9,15 @@ export default class PostPage extends Component {
       <main>
         <Link href='/about' prefetch><a>About</a></Link> |
         <div dangerouslySetInnerHTML={{ __html: post.bodyHtml }}></div>
+        <script src={`/static/${post.script}`} />
       </main>
     )
   }
 }
 
 PostPage.getInitialProps = ({ query }) => {
-  const pageJson = require(`../json/${query.path}`)
-
+  const post = require(`../json/${query.path}`)
   return {
-    post: pageJson
+    post
   }
 }
