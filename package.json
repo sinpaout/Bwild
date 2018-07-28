@@ -1,0 +1,30 @@
+{
+  "name": "Bwild",
+  "version": "1.0.0",
+  "description": "A wild blog system build with next.js and Dropbox",
+  "main": "server.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "export": "next export",
+    "deploy": "next build && next export",
+    "start": "NODE_ENV=production micro",
+    "build:content": "processmd content/**/*.md --outputDir json --preview 110 --summaryOutput json/summary.json"
+  },
+  "author": "bonzin",
+  "license": "MIT",
+  "dependencies": {
+    "@zeit/next-sass": "^0.2.0",
+    "micro": "^9.3.2",
+    "micro-route": "^2.5.0",
+    "next": "^6.1.1",
+    "node-sass": "^4.9.2",
+    "processmd": "^4.2.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "standard": "^11.0.1"
+  },
+  "devDependencies": {
+    "micro-dev": "^3.0.0"
+  }
+}
