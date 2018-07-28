@@ -6,7 +6,7 @@ module.exports = Object.assign({}, withSass(), {
     let pathMap = {}
     SUMMARY_JSON.fileMap && Object.keys(SUMMARY_JSON.fileMap).forEach((path) => {
       const { base, sourceBase } = SUMMARY_JSON.fileMap[path];
-      pathMap[`/p/${sourceBase}`] = { page: '/post', query: { path: base } }
+      pathMap[`/blog-tutrial/p/${sourceBase}`] = { page: '/post', query: { path: base } }
     })
    
     return {
